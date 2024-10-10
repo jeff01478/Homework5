@@ -13,7 +13,7 @@ document.getElementById('loginForm').addEventListener('submit', event => {
             if (xhr.responseText == "GOOD") {
 				window.open("lottery/ex-lottery")
 			} else {
-				alert("NMSL");
+				document.getElementById("loginError").innerHTML="帳號或密碼有誤!!";
 			}
         } else {
 			alert("GG");

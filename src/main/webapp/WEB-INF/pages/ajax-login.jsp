@@ -34,7 +34,7 @@
 	  </div>
 	</div>
 	<ul style="color: red; font-size: 0.8em">
-		<li>${ loginError }</li>
+		<li id="loginError"></li>
 	</ul>
 	<br/>
 	<p class="lead">${ successMessage }<p>
