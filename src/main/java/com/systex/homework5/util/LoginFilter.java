@@ -57,14 +57,12 @@ public class LoginFilter implements Filter {
 	}
 	
 	private void loginAuth(String userName, String password) {
-		List<Person> allPerson = (List<Person>)personRepository.findAll();
-		for (Person person : allPerson) {
-			if (person.getUserName().equals(userName)) {
-				if (person.getPassword().equals(password)) {
-					session.setAttribute("loginAuth", true);
-					System.out.println("登入成功");
-					return;
-				}
+		Person person = personRepository.findByUserName(userName);
+		if (person != null) {
+			if (person.getPassword().equals(password)) {
+				session.setAttribute("loginAuth", true);
+				System.out.println("登入成功");
+				return;
 			}
 		}
 		session.setAttribute("userName", userName);

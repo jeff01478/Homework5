@@ -2,9 +2,7 @@ document.getElementById('registerForm').addEventListener('input', registerConfir
 document.getElementById('registerForm').addEventListener('click', registerConfirm);
 
 
-function registerConfirm(event) {
-	// 阻止表單的默認提交行為
-	//event.preventDefault();
+function registerConfirm() {
 
 	// 創建XHR對象 
 	var xhr = new XMLHttpRequest();
@@ -23,14 +21,8 @@ function registerConfirm(event) {
 			password.innerHTML = responseJson["passwordMsg"];
 			password.style.color = responseJson["passwordColor"];
 			document.getElementById("passwordMsg").innerHTML = responseJson["passwordMsg"];
-	    } else {
-			alert("GG");
-		}
+	    }
 	};
-
-	xhr.onerror = () => {
-		alert("NMSL");
-	}
 
 	// 構建表單數據
 	var formData = new FormData(document.getElementById('registerForm'));
