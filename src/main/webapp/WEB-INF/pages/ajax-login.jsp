@@ -31,12 +31,11 @@
 	    	<button type="submit" class="btn btn-success">註冊</button>
 	    </form>
 	    <script src="<%= request.getContextPath() %>/js/loginConfirm.js"></script>
+	    <br/>
+		<p id="loginError" style="color: red; font-size: 0.8em"><br/></p>
 	  </div>
 	</div>
 	<a href="login">使用舊版登入</a>
-	<ul style="color: red; font-size: 0.8em">
-		<li id="loginError"></li>
-	</ul>
 	<br/>
 	<p class="lead">${ successMessage }<p>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
