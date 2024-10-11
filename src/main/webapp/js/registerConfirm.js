@@ -16,11 +16,12 @@ function registerConfirm() {
 			let responseJson = xhr.response
 			let userName = document.getElementById("userNameMsg");
 			let password = document.getElementById("passwordMsg");
-			userName.innerHTML = responseJson["userNameMsg"];
+			console.log(responseJson);
+			console.log(responseJson["userNameColor"])
 			userName.style.color = responseJson["userNameColor"];
+			userName.innerHTML = responseJson["userNameMsg"];
 			password.innerHTML = responseJson["passwordMsg"];
 			password.style.color = responseJson["passwordColor"];
-			document.getElementById("passwordMsg").innerHTML = responseJson["passwordMsg"];
 	    }
 	};
 

@@ -93,13 +93,15 @@ public class LoginController {
 		if (userName.length() < 6 || userName.length() > 12) {
 			System.out.println("帳號不合法");
 			msgs.put("userNameMsg", "帳號長度必須為6~12字元");
-			msgs.put("userNameColor", "red");
+			msgs.put("userNameColor", "Red");
 			userNameConfirm = false;
 		} else if(isExistUserName(userName)) {
+			System.out.println("帳號名稱已存在");
 			msgs.put("userNameMsg", "帳號名稱已存在");
-			msgs.put("userNamecolor", "red");
+			msgs.put("userNameColor", "Red");
 			userNameConfirm = false;
 		} else {
+			System.out.println("此帳號可使用");
 			msgs.put("userNameMsg", "此帳號可使用");
 			msgs.put("userNameColor", "LimeGreen");
 			userNameConfirm = true;
@@ -107,13 +109,14 @@ public class LoginController {
 		
 		if (password.length() < 6 || password.length() > 12) {
 			msgs.put("passwordMsg", "密碼長度必須為6~12字元");
-			msgs.put("passwordColor", "red");
+			msgs.put("passwordColor", "Red");
 			passwordConfirm = false;
 		} else {
 			msgs.put("passwordMsg", "此密碼可使用");
 			msgs.put("passwordColor", "LimeGreen");
 			passwordConfirm = true;
 		}
+		
 		if (userNameConfirm && passwordConfirm) {
 			session.setAttribute("registerConfirm", true);
 		} else {

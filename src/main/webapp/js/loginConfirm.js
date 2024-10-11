@@ -15,9 +15,7 @@ document.getElementById('loginForm').addEventListener('submit', event => {
 			} else {
 				document.getElementById("loginError").innerHTML="帳號或密碼有誤!!";
 			}
-        } else {
-			alert("GG");
-		}
+        }
     };
 
     // 構建表單數據
