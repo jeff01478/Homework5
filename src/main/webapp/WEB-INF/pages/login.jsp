@@ -33,6 +33,7 @@
 	    </form>
 	  </div>
 	</div>
+	<a href="ajax-login">使用新版登入</a>
 	<ul style="color: red; font-size: 0.8em">
 		<li>${ loginError }</li>
 	</ul>

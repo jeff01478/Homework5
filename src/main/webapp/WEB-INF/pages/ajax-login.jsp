@@ -33,6 +33,7 @@
 	    <script src="<%= request.getContextPath() %>/js/loginConfirm.js"></script>
 	  </div>
 	</div>
+	<a href="login">使用舊版登入</a>
 	<ul style="color: red; font-size: 0.8em">
 		<li id="loginError"></li>
 	</ul>

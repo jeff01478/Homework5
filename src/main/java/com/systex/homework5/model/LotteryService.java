@@ -16,10 +16,9 @@ public class LotteryService {
 			TreeSet<Integer> resultTreeSet = new TreeSet<>();
 			while(resultTreeSet.size() != 6) {
 				int num = (int)(Math.random()*49 + 1);
-				if (excludes.contains(num)) {
-					continue;
+				if (!excludes.contains(num)) {
+					resultTreeSet.add(num);
 				}
-				resultTreeSet.add(num);
 			}
 			resultSetArray[i] = resultTreeSet;
 		}

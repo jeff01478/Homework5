@@ -30,7 +30,17 @@ public class LoginController {
         return "ajax-login";
     }
 	
-	@GetMapping("lottery/logout")
+	@GetMapping("/login")
+	private String login() {
+		return "login";
+	}
+	
+	@GetMapping("/ajax-login")
+	private String ajxaLogin() {
+		return "ajax-login";
+	}
+	
+	@GetMapping("/lottery/logout")
 	private String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
@@ -106,6 +116,8 @@ public class LoginController {
 		}
 		if (userNameConfirm && passwordConfirm) {
 			session.setAttribute("registerConfirm", true);
+		} else {
+			session.setAttribute("registerConfirm", false);
 		}
 		System.out.println(msgs);
 		return msgs;
