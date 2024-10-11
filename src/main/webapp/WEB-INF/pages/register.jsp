@@ -20,21 +20,25 @@
 	<div class="card" style="width: 18rem; margin: auto; padding: 2rem;">
 	  <div class="card-body pt-0">
 	    <h5 class="card-title" style="padding-bottom: 1rem">帳號註冊</h5> 
-	    <form:form action="/homework5/addPerson" method="POST">
+	    <form:form id="registerForm" action="/homework5/add-person" method="POST">
 	      <div class="mb-3">
 	        <form:label path="userName" class="form-label">帳號</form:label>
 	        <form:input path="userName" type="text" class="form-control" name="userName" value="${ registerUserName }"/>
+	        <p id="userNameMsg" style="font-size: 12px;"><br/></p>
 	      </div>
 	      <div class="mb-3">
 	        <form:label path="password" class="form-label">密碼</form:label>
 	        <form:input path="password" type="password" class="form-control" name="password" value="${ registerPassword }"/>
+	        <p id="passwordMsg" style="font-size: 12px;"><br/></p>
 	      </div>
 	      <div class="mb-3">
 	        <label class="form-label">確認密碼</label>
 	        <input type="password" class="form-control" name="confirmPassword" value="${ confirmPassword }"/>
 	      </div>
+	      <p></p>
 	      <button type="submit" class="btn btn-primary">送出</button>
 	    </form:form>
+	    <script src="<%= request.getContextPath() %>/js/registerConfirm.js"></script>
 	  </div>
 	</div>
 	<ul style="color: red; font-size: 0.8em">
