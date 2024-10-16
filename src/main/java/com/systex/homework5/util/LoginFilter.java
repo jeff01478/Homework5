@@ -23,8 +23,6 @@ public class LoginFilter implements Filter {
 	
 	@Autowired
 	PersonRepository personRepository;
-	
-	HttpSession session;
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -33,7 +31,7 @@ public class LoginFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		
-		session = httpRequest.getSession();
+		HttpSession session = httpRequest.getSession();
 		
 		boolean isLogin = request.getParameter("isLogin") != null 
 				? Boolean.parseBoolean(request.getParameter("isLogin")) : false;
@@ -41,7 +39,7 @@ public class LoginFilter implements Filter {
 		if (isLogin) {
 			String userName = request.getParameter("userName");
 			String password = request.getParameter("password");
-			loginAuth(userName, password);
+			loginAuth(userName, password, session);
 		}
 		
 		boolean loginAuth = session.getAttribute("loginAuth") != null 
@@ -56,7 +54,7 @@ public class LoginFilter implements Filter {
 		httpResponse.sendRedirect(httpRequest.getContextPath() + "/");
 	}
 	
-	private void loginAuth(String userName, String password) {
+	private void loginAuth(String userName, String password, HttpSession session) {
 		Person person = personRepository.findByUserName(userName);
 		if (person != null) {
 			if (person.getPassword().equals(password)) {
