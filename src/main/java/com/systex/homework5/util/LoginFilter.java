@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Component
 public class LoginFilter implements Filter {
-	
+
 	@Autowired
 	PersonRepository personRepository;
 	

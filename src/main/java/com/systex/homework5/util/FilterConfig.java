@@ -9,7 +9,7 @@ public class FilterConfig {
 
     @Bean
     public FilterRegistrationBean<LoginFilter> loggingFilter(LoginFilter loginFilter){
-        FilterRegistrationBean<LoginFilter> registrationBean 
+        FilterRegistrationBean<LoginFilter> registrationBean
           = new FilterRegistrationBean<>();
           
         registrationBean.setFilter(loginFilter);
