@@ -1,6 +1,17 @@
-document.getElementById('registerForm').addEventListener('input', registerConfirm);
+document.getElementById('registerForm').addEventListener('input', debounce(registerConfirm));
 document.getElementById('registerForm').addEventListener('click', registerConfirm);
 
+
+function debounce(callback) {
+	let timeOut;
+	return () => {
+		clearTimeout(timeOut)
+		timeOut = setTimeout(() => {
+			console.log("nmsl");
+			callback();
+		}, 500)
+	};
+}
 
 function registerConfirm() {
 
@@ -17,7 +28,7 @@ function registerConfirm() {
 			let userName = document.getElementById("userNameMsg");
 			let password = document.getElementById("passwordMsg");
 			console.log(responseJson);
-			console.log(responseJson["userNameColor"])
+			console.log(responseJson["userNameColor"]);
 			userName.style.color = responseJson["userNameColor"];
 			userName.innerHTML = responseJson["userNameMsg"];
 			password.innerHTML = responseJson["passwordMsg"];
