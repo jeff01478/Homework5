@@ -20,7 +20,7 @@
 			}
 		}
 	%>
-	<a href="ex-lottery">再試一次</a><br/>
+	<a href="lottery">再試一次</a><br/>
 	<a href="logout">登出</a>
 </body>
 </html>

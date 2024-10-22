@@ -3,7 +3,7 @@ document.getElementById('loginForm').addEventListener('submit', event => {
     event.preventDefault();
     
     // 創建XHR對象 
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.open('POST', 'lottery/ajax-login-confirm', true);
    	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     
@@ -11,16 +11,19 @@ document.getElementById('loginForm').addEventListener('submit', event => {
     xhr.onload = function() {
         if (xhr.status === 200) {
             if (xhr.responseText == "GOOD") {
-				window.location.replace("lottery/ex-lottery");
+                console.log("登入成功");
+				window.location.replace("lottery/lottery");
 			} else {
 				document.getElementById("loginError").innerHTML="帳號或密碼有誤!!";
 			}
+        } else {
+            console.log("NMSL");
         }
     };
 
     // 構建表單數據
-    var formData = new FormData(document.getElementById('loginForm'));
-    var urlEncodedData = new URLSearchParams(formData).toString();
+    let formData = new FormData(document.getElementById('loginForm'));
+    let urlEncodedData = new URLSearchParams(formData).toString();
 
     // 發送請求
     xhr.send(urlEncodedData);

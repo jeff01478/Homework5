@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,24 +15,28 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class LotteryController {
-	
-	@Autowired
-	LotteryService lotteryService;
-	
-	@GetMapping("lottery/ex-lottery")
-	private String lottery() {
-		return "lottery/lottery";
+
+	final LotteryService lotteryService;
+	String returnWeb = "lottery/lottery-from";
+
+	public LotteryController(LotteryService lotteryService) {
+		this.lotteryService = lotteryService;
 	}
 	
-	@PostMapping("/lottery/exLottery")
-	private String lottery(HttpServletRequest request, HttpSession session) {
+	@GetMapping("lottery/lottery")
+	String lottery() {
+		return returnWeb;
+	}
+
+	@PostMapping("/lottery/ex-lottery")
+	String lottery(HttpServletRequest request, HttpSession session) {
 		return exLotteryImp(request, session);
 	}
 	
 	private String exLotteryImp(HttpServletRequest request, HttpSession session) {
 		LinkedList<String> errorMsgs = new LinkedList<>();
-		String groupString = (String)request.getParameter("groups");
-		String filterString = (String)request.getParameter("filterNum");
+		String groupString = request.getParameter("groups");
+		String filterString = request.getParameter("filterNum");
 		session.setAttribute("errors", errorMsgs);
 		if (groupString.isEmpty()) {
 			errorMsgs.add("請輸入需要數組的數量");
@@ -41,16 +44,15 @@ public class LotteryController {
 		session.setAttribute("groups", groupString);
 		session.setAttribute("filterNum", filterString);
 		if(!errorMsgs.isEmpty()) {
-			return "lottery/lottery";
+			return returnWeb;
 		}
-		
 		try {
 			int groups = Integer.parseInt(groupString);
 			Set<Integer> filterSet = new HashSet<>();
 			if (!filterString.isEmpty()) {
 				String[] filterArray = filterString.split(" ");
 				for (String filterNum : filterArray) {
-					if (filterNum != "") {
+					if (!filterNum.isEmpty()) {
 						filterSet.add(Integer.parseInt(filterNum));
 					}
 				}
@@ -60,11 +62,11 @@ public class LotteryController {
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 			errorMsgs.add("請輸入整數");
-			return "lottery/lottery";
+			return returnWeb;
 		} catch (Exception e) {
 			e.printStackTrace();
 			errorMsgs.add(e.getMessage());
-			return "lottery/lottery";
+			return returnWeb;
 		}
 		
 		return "lottery/result";
